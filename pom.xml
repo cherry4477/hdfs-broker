@@ -9,20 +9,20 @@
     
 	<name>hdfs-broker</name>
 
-
+ <!-- 
     <parent>
         <groupId>org.trustedanalytics</groupId>
         <artifactId>spring-project-template</artifactId>
         <version>0.4.4</version>
     </parent>
      
-     <!-- 
+    -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.2.2.RELEASE</version>
     </parent>
-    -->
+    
     <properties>
         <brokerVersion>2.6.0</brokerVersion>
         <brokerTestVersion>2.6.0</brokerTestVersion>
@@ -34,9 +34,7 @@
         <jacoco-measurement-classes>0.6250</jacoco-measurement-classes>
         <!-- new-->
         <java.version>1.8</java.version>
-        <!-- 
         <hadoop.version>2.6.0</hadoop.version>
-         -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>	
          
     </properties>
@@ -52,8 +50,6 @@
                 <filtering>false</filtering>
             </resource>
         </resources>
-        <pluginManagement>
-        
         <plugins>
         	<plugin>
       			<groupId>org.apache.maven.plugins</groupId>
@@ -166,7 +162,6 @@
              -->
             
         </plugins>
-        </pluginManagement>
     </build>
 
     <dependencies>
