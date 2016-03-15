@@ -34,7 +34,7 @@
         <jacoco-measurement-classes>0.6250</jacoco-measurement-classes>
         <!-- new-->
         <java.version>1.8</java.version>
-        <hadoop.version>2.6.0</hadoop.version>
+        <hadoop.version>2.6.0-cdh5.5.1</hadoop.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>	
          
     </properties>
