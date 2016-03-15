@@ -28,7 +28,7 @@ import org.trustedanalytics.servicebroker.hdfs.config.ExternalConfiguration;
 import org.trustedanalytics.servicebroker.hdfs.config.Profiles;
 import org.trustedanalytics.servicebroker.hdfs.config.kerberos.KerberosProperties;
 
-@Profile(Profiles.CLOUD)
+//@Profile(Profiles.CLOUD)
 @Configuration
 public class ZookeeperConfig {
 
@@ -38,7 +38,7 @@ public class ZookeeperConfig {
   @Autowired
   private KerberosProperties kerberosProperties;
 
-  @Profile(Profiles.CLOUD)
+//  @Profile(Profiles.CLOUD)
   @Bean(initMethod = "init", destroyMethod = "destroy")
   public ZookeeperClient getZKClient() throws IOException {
     AppConfiguration confHelper = Configurations.newInstanceFromEnv();
@@ -47,5 +47,10 @@ public class ZookeeperConfig {
     return new ZookeeperClientBuilder(zkConf.getProperty(Property.ZOOKEPER_URI).get(),
         kerberosProperties.getUser(), kerberosProperties.getPassword(), config.getBrokerStorePath())
         .build();
+	  //TODO
+//	  String zookeeperConnectionString="10.1.235.97:32768";
+//	  String rootDirectory="/servicebroker";
+//	  ZookeeperClient client= new ZookeeperClientBuilder(zookeeperConnectionString,  kerberosProperties.getUser(), kerberosProperties.getPassword(), rootDirectory).build();
+//	  return client;
   }
 }

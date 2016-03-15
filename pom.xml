@@ -1,15 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>hdfs-broker</artifactId>
-    <version>0.8.2</version>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ldp</groupId>
+    <artifactId>hdfs-broker</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0</version>
+    
+	<name>hdfs-broker</name>
+
+<!-- 
     <parent>
         <groupId>org.trustedanalytics</groupId>
         <artifactId>spring-project-template</artifactId>
         <version>0.4.4</version>
     </parent>
-
+     -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.2.2.RELEASE</version>
+    </parent>
+    
     <properties>
         <brokerVersion>2.6.0</brokerVersion>
         <brokerTestVersion>2.6.0</brokerTestVersion>
@@ -19,6 +31,11 @@
         <jacoco-measurement-branches>0.1500</jacoco-measurement-branches>
         <jacoco-measurement-lines>0.5170</jacoco-measurement-lines>
         <jacoco-measurement-classes>0.6250</jacoco-measurement-classes>
+        <!-- new-->
+        <java.version>1.8</java.version>
+        <hadoop.version>2.6.0</hadoop.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>	
+         
     </properties>
 
     <build>
@@ -32,11 +49,23 @@
                 <filtering>false</filtering>
             </resource>
         </resources>
+        <pluginManagement>
+        
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+			</plugin>
+            <!-- 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -75,6 +104,7 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -94,7 +124,38 @@
                     </arguments>
                 </configuration>
             </plugin>
+             -->
+            <plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<configuration>
+　 　 　 　 　 				<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<classpathPrefix>lib/</classpathPrefix>
+								<mainClass>org.trustedanalytics.servicebroker.hdfs.config.Application</mainClass>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+            <plugin>  
+				<groupId>org.apache.maven.plugins</groupId>  
+				<artifactId>maven-dependency-plugin</artifactId>  
+					<executions>  
+							<execution>  
+								<id>copy</id>  
+								<phase>install</phase>  
+								<goals>  
+									<goal>copy-dependencies</goal>  
+								</goals>  
+								<configuration>  
+									<outputDirectory>target/lib</outputDirectory>
+								</configuration>  
+							</execution>  
+					</executions>  
+			</plugin>
         </plugins>
+        </pluginManagement>
     </build>
 
     <dependencies>
@@ -286,5 +347,30 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
         </dependency>
+        <dependency>
+    		<groupId>com.mycila</groupId>
+    		<artifactId>license-maven-plugin</artifactId>
+   			<version>2.6</version>
+		</dependency>
+		<!-- 
+        <dependency>
+    		<groupId>jdk.tools</groupId>
+    		<artifactId>jdk.tools</artifactId>
+   			<version>1.7</version>
+    		<scope>system</scope>
+    		<systemPath>C:/Program Files/Java/jdk1.7.0_80/lib/tools.jar</systemPath>
+		</dependency>
+		 -->
     </dependencies>
+    
+    <repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>http://repo.spring.io/libs-snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>

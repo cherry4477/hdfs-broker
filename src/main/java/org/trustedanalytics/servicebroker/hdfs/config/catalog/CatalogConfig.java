@@ -59,9 +59,11 @@ public class CatalogConfig {
         new Plan(configuration.getCfBaseId() + "-shared-plan", "shared",
             "This Plan creates directory on HDFS.", getPlanMetadata(true), true),
         new Plan(configuration.getCfBaseId() + "-multitenant-plan", "template",
-            "This Plan returns a template path on HDFS.", getPlanMetadata(false), true),
-        new Plan(configuration.getCfBaseId() + "-encrypted-plan", "encrypted",
-            "This Plan creates encrypted directory on HDFS.", getPlanMetadata(true), true));
+            "This Plan returns a template path on HDFS.", getPlanMetadata(false), true)
+        //TODO 加密研究出来后在提供 此plan
+//        new Plan(configuration.getCfBaseId() + "-encrypted-plan", "encrypted",
+//            "This Plan creates encrypted directory on HDFS.", getPlanMetadata(true), true)
+        );
   }
 
   private Map<String, Object> getServiceDefinitionMetadata() {

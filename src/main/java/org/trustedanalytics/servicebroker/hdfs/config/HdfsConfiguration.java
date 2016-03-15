@@ -39,7 +39,7 @@ import org.trustedanalytics.servicebroker.hdfs.service.HdfsServiceInstanceBindin
 
 import sun.security.krb5.KrbException;
 
-@Profile(Profiles.CLOUD)
+//@Profile(Profiles.CLOUD)
 @org.springframework.context.annotation.Configuration
 public class HdfsConfiguration {
 

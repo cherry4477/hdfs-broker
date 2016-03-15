@@ -30,7 +30,7 @@ import org.trustedanalytics.servicebroker.hdfs.config.Profiles;
 public class KerberosConfig {
 
   @Bean
-  @Profile(Profiles.CLOUD)
+//  @Profile(Profiles.CLOUD)
   public KerberosProperties getKerberosProperties() throws IOException {
     AppConfiguration helper = Configurations.newInstanceFromEnv();
     ServiceInstanceConfiguration krbConf = helper.getServiceConfig("kerberos-service");
@@ -40,5 +40,12 @@ public class KerberosConfig {
         krbConf.getProperty(Property.KRB_REALM).get(),
         krbConf.getProperty(Property.USER).get(),
         krbConf.getProperty(Property.PASSWORD).get());
+	  
+	  //TODO
+//	  String kdc="10.1.235.97";
+//	  String realm="NODE.DC1.CONSUL";
+//	  String user="hdfs";
+//	  String password="hdfs";
+//	  return new KerberosProperties(kdc, realm, user, password);
   }
 }
