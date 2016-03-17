@@ -1,0 +1,7 @@
+hdfs-broker:
+  image: daocloud.io/temp_ldp/hdfs-broker:master-8881a97
+  restart: always
+  ports:
+  - 8012:8080
+  environment:
+  - VCAP_SERVICES={"hdfs":[{"kerberos":{"kdc":"10.1.235.97","krealm":"NODE.DC1.CONSUL","kuser":"hdfs","kpassword":"hdfs"},"label":"kerberos-service","name":"kerberos-service"}],"zookeeper":[{"zk.cluster":"10.1.235.97:32768","label":"zookeeper","name":"zookeeper"}]}
