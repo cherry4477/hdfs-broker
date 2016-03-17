@@ -12,7 +12,7 @@ hdfs:
   keytab: 111
 store:
   #optional parameter to configure zookeeper-store
-  path: /broker/hdfs/metadata
+  path: /servicebroker
 cf:
   #name of service in cloud foundry catalog
   servicename: hdfs

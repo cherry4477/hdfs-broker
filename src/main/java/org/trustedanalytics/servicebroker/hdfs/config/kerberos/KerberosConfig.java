@@ -19,12 +19,10 @@ import java.io.IOException;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.trustedanalytics.hadoop.config.client.AppConfiguration;
 import org.trustedanalytics.hadoop.config.client.Configurations;
 import org.trustedanalytics.hadoop.config.client.Property;
 import org.trustedanalytics.hadoop.config.client.ServiceInstanceConfiguration;
-import org.trustedanalytics.servicebroker.hdfs.config.Profiles;
 
 @Configuration
 public class KerberosConfig {
@@ -32,6 +30,7 @@ public class KerberosConfig {
   @Bean
 //  @Profile(Profiles.CLOUD)
   public KerberosProperties getKerberosProperties() throws IOException {
+	  
     AppConfiguration helper = Configurations.newInstanceFromEnv();
     ServiceInstanceConfiguration krbConf = helper.getServiceConfig("kerberos-service");
 
@@ -40,12 +39,6 @@ public class KerberosConfig {
         krbConf.getProperty(Property.KRB_REALM).get(),
         krbConf.getProperty(Property.USER).get(),
         krbConf.getProperty(Property.PASSWORD).get());
-	  
-	  //TODO
-//	  String kdc="10.1.235.97";
-//	  String realm="NODE.DC1.CONSUL";
-//	  String user="hdfs";
-//	  String password="hdfs";
-//	  return new KerberosProperties(kdc, realm, user, password);
   }
+  
 }
